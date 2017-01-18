@@ -1,6 +1,7 @@
 {
   "name": "brzuchal/filesystem-stream-wrapper",
-  "description": "Simple PHP LOcal Filesystem Wrapper",
+  "description": "Simple PHP Local Filesystem Wrapper",
+  "license": "MIT",
   "author": [
     {
       "name": "Michał Brzuchalski",
