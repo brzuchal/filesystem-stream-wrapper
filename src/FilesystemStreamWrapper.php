@@ -3,9 +3,9 @@
 /**
  * Class FilesystemStreamWrapper
  *
- * This is onefile local filesystem streamWrapper class gives possibility
+ * This is one-file local filesystem streamWrapper class gives possibility
  * to use normal file io built in functions.
- * Docblock comments are missing deliberately due to pragmatic approach
+ * Docblock comments are missing deliberately due to pragmatic approach.
  *
  * @use FilesystemStreamWrapper::register('app', __DIR__ . '/myapp_direcotry')
  * @use FilesystemStreamWrapper::unregister('app')
@@ -56,7 +56,7 @@ class FilesystemStreamWrapper
         return true;
     }
 
-    public function dir_opendir(string $path , int $options) : bool
+    public function dir_opendir(string $path, int $options) : bool
     {
         try {
             $this->dir = opendir(self::resolve($path), $this->context);
@@ -92,7 +92,7 @@ class FilesystemStreamWrapper
         return true;
     }
 
-    public function mkdir(string $path , int $mode , int $options) : bool
+    public function mkdir(string $path, int $mode, int $options) : bool
     {
         try {
             $resolved = self::resolve($path);
@@ -117,7 +117,7 @@ class FilesystemStreamWrapper
         }
     }
 
-    public function rmdir ( string $path , int $options ) : bool
+    public function rmdir(string $path, int $options) : bool
     {
         try {
             $resolved = self::resolve($path);
@@ -183,6 +183,7 @@ class FilesystemStreamWrapper
             return false;
         }
     }
+    
     /**
      * @param   string   $path      The file path or URL to set metadata. Note that in the case of a URL,
      *                              it must be a :// delimited URL. Other URL forms are not supported.
@@ -232,7 +233,7 @@ class FilesystemStreamWrapper
         }
     }
 
-    public function stream_open(string $path , string $mode , int $options , string &$opened_path = null) : bool
+    public function stream_open(string $path, string $mode, int $options, string &$opened_path = null) : bool
     {
         try {
             return !empty($this->stream = fopen(self::resolve($path), $mode));
@@ -254,7 +255,7 @@ class FilesystemStreamWrapper
         return '';
     }
 
-    public function stream_seek(int $offset , int $whence = SEEK_SET) : bool
+    public function stream_seek(int $offset, int $whence = SEEK_SET) : bool
     {
         try {
             return is_resource($this->stream) && fseek($this->stream, $offset, $whence);
@@ -267,7 +268,7 @@ class FilesystemStreamWrapper
     /**
      * AFAIK There is no need for this on local filesystem streams
      */
-    public function stream_set_option(int $option , int $arg1 , int $arg2) : bool
+    public function stream_set_option(int $option, int $arg1, int $arg2) : bool
     {
         return false;
     }
@@ -327,10 +328,11 @@ class FilesystemStreamWrapper
             return false;
         }
     }
+
     /**
      * @return array|bool fstat array, but if file doesn't exists it must return false
      */
-    public function url_stat(string $path , int $flags)// : array
+    public function url_stat(string $path, int $flags)// : array
     {
         try {
             $resolved = self::resolve($path);
