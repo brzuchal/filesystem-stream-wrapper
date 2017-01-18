@@ -145,7 +145,10 @@ class FilesystemStreamWrapper
         return $this->stream;
     }
 
-    public function stream_close() : void
+    /**
+     * @return void
+     */
+    public function stream_close()
     {
         try {
             fclose($this->stream);
@@ -332,7 +335,7 @@ class FilesystemStreamWrapper
     /**
      * @return array|bool fstat array, but if file doesn't exists it must return false
      */
-    public function url_stat(string $path, int $flags)// : array
+    public function url_stat(string $path, int $flags)
     {
         try {
             $resolved = self::resolve($path);
