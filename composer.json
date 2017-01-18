@@ -1,0 +1,21 @@
+{
+  "name": "brzuchal/filesystem-stream-wrapper",
+  "description": "Simple PHP LOcal Filesystem Wrapper",
+  "author": [
+    {
+      "name": "Michał Brzuchalski",
+      "email": "micha.brzuchalski@gmail.com"
+    }
+  ],
+  "autoload": {
+    "classmap": [
+      "src/FilesystemStreamWrapper.php"
+    ]
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^5.7"
+  },
+  "config": {
+    "bin-dir": "bin/"
+  }
+}
