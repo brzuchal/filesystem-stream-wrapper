@@ -6,7 +6,8 @@ class FilesystemStreamWrapperTest extends PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->testRootPath = realpath(__DIR__ . '/../var/test');
+        $this->testRootPath = realpath(__DIR__ . '/..') . DIRECTORY_SEPARATOR . 'var';
+
         if (!@mkdir($this->testRootPath) && !is_dir($this->testRootPath)) {
             throw new RuntimeException("Unable to create test:// root path: {$this->testRootPath}");
         }
