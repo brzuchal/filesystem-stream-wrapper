@@ -59,7 +59,11 @@ class FilesystemStreamWrapper
     public function dir_opendir(string $path, int $options) : bool
     {
         try {
-            $this->dir = opendir(self::resolve($path), $this->context);
+            if ($this->context) {
+                $this->dir = opendir(self::resolve($path), $this->context);
+            } else {
+                $this->dir = opendir(self::resolve($path));
+            }
             return is_resource($this->dir);
         } catch (\Exception $e) {
             trigger_error($e->getMessage(), E_USER_WARNING);
