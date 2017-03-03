@@ -25,6 +25,21 @@ rmdir('app://dir');
 FilesystemStreamWrapper::unregister('app');
 ```
 
+# Known Issues
+
+PHP doesn't support StreamWrapper in some functions like `chdir()`, `link()`, `symlink()`, `readlink()`, `linkinfo()`, `tempnam()` and `realpath()`. While most of them are rarely used the `realpath()` is widely used.
+To deal with that issue the only way is using `Filesystem::realpath()` method or declaring wrapped function in some namespace appropriate for `realpath()` usage which cause PHP internally looking for an function declared in current namespace.
+
+For eg. using `Doctrine\ORM\Tools\Console\Command\GenerateProxiesCommand` from [Doctrine2](https://github.com/doctrine/doctrine2/blob/master/lib/Doctrine/ORM/Tools/Console/Command/GenerateProxiesCommand.php#L87) you need to declare function like that:
+
+```php
+namespace Doctrine\ORM\Tools\Console\Command;
+
+function realpath() {
+    return call_user_func_array("FilesystemStreamWrapper::realpath", func_get_args());
+}
+```
+
 # License
 
 MIT License
